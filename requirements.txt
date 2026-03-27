@@ -1,0 +1,2 @@
+svg_turtle==1.0.0
+svgwrite==1.4.3
