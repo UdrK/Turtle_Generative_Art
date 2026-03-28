@@ -11,4 +11,4 @@ tur.color("white")
 draw_shape_parameters = {"tur": tur}
 draw_shape(tur)
 tur.save_as("../Drawings/circles_and_triangles.svg")
-print("Saved: basic_paper.svg")
+print("Saved: circles_and_triangles.svg")
