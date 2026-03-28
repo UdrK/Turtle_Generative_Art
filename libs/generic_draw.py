@@ -4,7 +4,16 @@ import uuid
 
 def draw(method, keyword_arguments, is_svg=True, filename="", canvas_size=[1920, 1080], bg_color="black", stroke_color="white"):
     """
-    Runs method without drawing. Leaves turtle pen status unchanged
+    Runs method without drawing. Leaves turtle pen status unchanged.
+
+    Usage:
+    from libs.generic_draw import draw
+
+    def draw_shape(tur):
+        pass
+
+    draw_shape_parameters = {"tur": None}
+    draw(draw_shape, draw_shape_parameters, False)
     
     :param method: function in which a turtle does things
     :param keyword_arguments: a dictionary of arguments to pass to method, 
