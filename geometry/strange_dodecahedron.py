@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from libs.geometry_calculations import distance_between_two_points, find_regular_polygon_center
 from libs.turtle_utils import forward_without_drawing
-from libs.utils import label_points, label_point
+from libs.utils import label_points
 
 # source: /home/kappa/Pictures/sep25sq.gif
 
