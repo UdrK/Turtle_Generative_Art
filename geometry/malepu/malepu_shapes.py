@@ -1,3 +1,5 @@
+import math
+from libs.math_calculations import calculate_parabola, map_value_between_ranges
 from libs.turtle_utils import forward_dashed, teleport, forward_optional_draw, circle_and_return_center, invariant_draw, circle_centered_at_turtle, forward_dashed
 from libs.geometry_shapes import draw_oval, draw_triangle
 from geometry.malepu.malepu_croissant import draw_croissant_complex, draw_evenly_croissant_complex
@@ -115,6 +117,28 @@ def large_concentric_triangles(tur, side):
     tur.setheading(original_heading)
     draw_triangle(tur, side*0.95, forward_dashed)
 
+def draw_star(tur, size):
+    center = tur.pos()
+
+    spokes = 36
+    angle_step = 360 / spokes
+    macro_spokes = 4
+
+    for i in range(spokes):
+        parabola_x = map_value_between_ranges(i%macro_spokes, [0, macro_spokes], [0, 1])
+        ray_length_multiplicator = calculate_parabola(lambda x: (x**2 - x + 1), parabola_x)
+
+        print(f"f({parabola_x}) = {ray_length_multiplicator}")
+
+        # Small deterministic oscillation to emulate irregular ray lengths.
+        ray_length = size * ray_length_multiplicator
+        teleport(tur, center)
+        tur.setheading(i * angle_step)
+        tur.forward(ray_length)
+        i+=1
+
+
 def draw_shape(tur):
-    draw_croissant_complex(tur)
+    # draw_croissant_complex(tur)
     # large_concentric_triangles(tur, 500)
+    draw_star(tur, 100)
