@@ -1,4 +1,3 @@
-import math
 from libs.math_calculations import calculate_parabola, map_value_between_ranges
 from libs.turtle_utils import forward_dashed, teleport, forward_optional_draw, circle_and_return_center, invariant_draw, circle_centered_at_turtle, forward_dashed
 from libs.geometry_shapes import draw_oval, draw_triangle
