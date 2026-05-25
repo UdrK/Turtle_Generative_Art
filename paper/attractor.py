@@ -1,7 +1,7 @@
 from art.strange_attractors.attractor import draw_attractor, lorenz_attractor
-from svg_turtle import SvgTurtle
+from libs.tga_turtle import TGA_Turtle
 
-tur = SvgTurtle(1920, 1080)
+tur = TGA_Turtle(is_svg=True, canvas_size=[1920, 1080])
 
 attractor_params = {
     "x": 1,

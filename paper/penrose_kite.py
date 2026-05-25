@@ -1,11 +1,11 @@
 import turtle
-from svg_turtle import SvgTurtle
+from libs.tga_turtle import TGA_Turtle
 from art.geometry.penrose_kite import penrose_kite, long_side
 
 # simple turtle setup method used in the methods below for drawing
 def setup_turtle(save_as_svg=True):
     if save_as_svg:
-        tur = SvgTurtle(1920, 1080) 
+        tur = TGA_Turtle(is_svg=True, canvas_size=[1920, 1080])
         tur.pensize(0.25)
         screen = tur.getscreen()
         screen.bgcolor("white")

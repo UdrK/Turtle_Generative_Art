@@ -1,8 +1,8 @@
 from art.geometry.basic import triangle_spiral
-from svg_turtle import SvgTurtle
+from libs.tga_turtle import TGA_Turtle
 
 ## CANVAS SETUP
-tur = SvgTurtle(1920, 1080)
+tur = TGA_Turtle(is_svg=True, canvas_size=[1920, 1080])
 tur.fillcolor("white")
 screen = tur.getscreen()
 screen.bgcolor("black")
