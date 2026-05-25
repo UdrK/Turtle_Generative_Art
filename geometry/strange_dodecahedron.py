@@ -1,10 +1,7 @@
-import turtle
-import svg_turtle
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from libs.geometry_calculations import distance_between_two_points, find_regular_polygon_center
-from libs.turtle_utils import forward_without_drawing
 from libs.utils import label_points
 
 # source: /home/kappa/Pictures/sep25sq.gif
@@ -51,7 +48,7 @@ def find_hexagon_half_point(tur, circle_center, vertex):
         tur.setheading(vertex_heading)
 
     def find_point_by_turtle(tur, distance_to_point):
-        forward_without_drawing(tur, distance_to_point)
+        tur.forward_without_drawing(distance_to_point)
         return [tur.pos()[0], tur.pos()[1]]
 
     position_turtle_at_center_towards_vertex(tur, circle_center, vertex)
@@ -71,8 +68,8 @@ def draw_small_outer_triangles(tur, circle_center, big_triangles_vertices, big_t
 
     def find_small_sides_vertices_from_turtle(tur, hexagon_half_point, vertex_heading, small_side_length):
         tur.teleport(hexagon_half_point[0], hexagon_half_point[1])
-        small_side_first_vertex = forward_without_drawing(tur, small_side_length, vertex_heading+90)
-        small_side_second_vertex = forward_without_drawing(tur, -2*small_side_length, vertex_heading+90)
+        small_side_first_vertex = tur.forward_without_drawing(small_side_length, vertex_heading+90)
+        small_side_second_vertex = tur.forward_without_drawing(-2*small_side_length, vertex_heading+90)
         return [small_side_first_vertex, small_side_second_vertex]
 
     def draw_from_triangle_point_to_vertex(tur, triangle_point, vertex):
