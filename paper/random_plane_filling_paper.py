@@ -1,7 +1,7 @@
 import random_plane_filling.plane_filling_stats as pfs
 from random_plane_filling.plane_filling import fill_plane
 from libs.stats import sum_stat, print_stats, initialize_stats
-from svg_turtle import SvgTurtle
+from libs.tga_turtle import TGA_Turtle
 from time import time
 
 ## SETUP
@@ -9,11 +9,12 @@ from time import time
 initialize_stats(pfs.stat_ids, pfs.stat_descriptions, 0)
 
 ## CANVAS SETUP
-tur = SvgTurtle(1920, 1080)
-tur.fillcolor("white")
-screen = tur.getscreen()
+tur = TGA_Turtle(is_svg=True, canvas_size=[1920, 1080])
+inner = tur.turtle
+inner.fillcolor("white")
+screen = inner.getscreen()
 screen.bgcolor("black")
-tur.color("white")
+inner.color("white")
 
 ## SCRIPT
 filename = "../Drawings/random_plane_filling.svg"

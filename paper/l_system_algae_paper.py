@@ -1,20 +1,19 @@
 from geometry.l_system import draw_algae_l_system, calculate_l_system, algae
-from libs.turtle_utils import teleport
-from svg_turtle import SvgTurtle
-
+from libs.tga_turtle import TGA_Turtle
 
 ## CANVAS SETUP
-tur = SvgTurtle(1440, 2440)
-tur.fillcolor("white")
-screen = tur.getscreen()
+tur = TGA_Turtle(is_svg=True, canvas_size=[1440, 2440])
+inner = tur.turtle
+inner.fillcolor("white")
+screen = inner.getscreen()
 screen.bgcolor("black")
-tur.color("white")
+inner.color("white")
 
 rules = algae()
 lsystem = calculate_l_system(rules["iterations"], rules["axiom"], rules["rules"])
 
 tur.setheading(90)
-teleport(tur, [-500, -800])
+tur.teleport([-500, -800])
 
 draw_algae_l_system(tur, lsystem, rules["angle"], rules["length"])
 tur.save_as("../Drawings/algae_l_system.svg")

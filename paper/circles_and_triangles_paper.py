@@ -1,14 +1,14 @@
 from geometry.circles_and_triangles import draw_shape
-from svg_turtle import SvgTurtle
+from libs.tga_turtle import TGA_Turtle
 
 ## CANVAS SETUP
-tur = SvgTurtle(1920, 1080)
-tur.fillcolor("white")
-screen = tur.getscreen()
+tur = TGA_Turtle(is_svg=True, canvas_size=[1920, 1080])
+inner = tur.turtle
+inner.fillcolor("white")
+screen = inner.getscreen()
 screen.bgcolor("black")
-tur.color("white")
+inner.color("white")
 
-draw_shape_parameters = {"tur": tur}
 draw_shape(tur)
 tur.save_as("../Drawings/circles_and_triangles.svg")
 print("Saved: circles_and_triangles.svg")
