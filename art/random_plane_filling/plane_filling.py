@@ -1,7 +1,7 @@
 import random
 import time as t
 from shapely.geometry import Polygon
-import random_plane_filling.plane_filling_stats as pfs
+import art.random_plane_filling.plane_filling_stats as pfs
 from libs.utils import time_method
 from libs.stats import sum_stat
 

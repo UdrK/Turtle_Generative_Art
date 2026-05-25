@@ -1,4 +1,4 @@
-from geometry.circles_and_triangles import draw_shape
+from art.geometry.circles_and_triangles import draw_shape
 from libs.tga_turtle import TGA_Turtle
 
 ## CANVAS SETUP

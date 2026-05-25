@@ -1,6 +1,6 @@
 import turtle
 from svg_turtle import SvgTurtle
-from geometry.penrose_kite import penrose_kite, long_side
+from art.geometry.penrose_kite import penrose_kite, long_side
 
 # simple turtle setup method used in the methods below for drawing
 def setup_turtle(save_as_svg=True):

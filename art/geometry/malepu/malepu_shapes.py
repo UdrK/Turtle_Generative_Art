@@ -1,6 +1,6 @@
 from libs.math_calculations import calculate_parabola, map_value_between_ranges
 from libs.geometry_shapes import draw_oval, draw_triangle
-from geometry.malepu.malepu_croissant import draw_croissant_complex, draw_evenly_croissant_complex
+from art.geometry.malepu.malepu_croissant import draw_croissant_complex, draw_evenly_croissant_complex
 
 
 def draw_overlapping_triangles(tur, triangle_side, draw_lower_side=False):

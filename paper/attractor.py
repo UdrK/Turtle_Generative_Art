@@ -1,4 +1,4 @@
-from strange_attractors.attractor import draw_attractor, lorenz_attractor
+from art.strange_attractors.attractor import draw_attractor, lorenz_attractor
 from svg_turtle import SvgTurtle
 
 tur = SvgTurtle(1920, 1080)

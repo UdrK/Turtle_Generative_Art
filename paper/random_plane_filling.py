@@ -1,5 +1,5 @@
-import random_plane_filling.plane_filling_stats as pfs
-from random_plane_filling.plane_filling import fill_plane
+import art.random_plane_filling.plane_filling_stats as pfs
+from art.random_plane_filling.plane_filling import fill_plane
 from libs.stats import sum_stat, print_stats, initialize_stats
 from libs.tga_turtle import TGA_Turtle
 from time import time

@@ -1,5 +1,5 @@
 from svg_turtle import SvgTurtle
-from strange_attractors.henon_attractor import loop
+from art.strange_attractors.henon_attractor import loop
 
 screen_width = 1920
 screen_height = 1080

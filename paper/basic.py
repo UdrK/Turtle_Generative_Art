@@ -1,4 +1,4 @@
-from geometry.basic import triangle_spiral
+from art.geometry.basic import triangle_spiral
 from svg_turtle import SvgTurtle
 
 ## CANVAS SETUP

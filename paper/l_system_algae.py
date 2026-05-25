@@ -1,4 +1,4 @@
-from geometry.l_system import draw_algae_l_system, calculate_l_system, algae
+from art.geometry.l_system import draw_algae_l_system, calculate_l_system, algae
 from libs.tga_turtle import TGA_Turtle
 
 ## CANVAS SETUP

@@ -1,4 +1,4 @@
-from geometry.strange_dodecahedron import draw_shape
+from art.geometry.strange_dodecahedron import draw_shape
 from libs.tga_turtle import TGA_Turtle
 
 ## CANVAS SETUP
