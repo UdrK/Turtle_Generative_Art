@@ -90,8 +90,12 @@ class TGA_Turtle:
 
     # region drawing
 
-    def dot(self, size=None, color=None):
-        return self.turtle.dot(size, color)
+    def dot(self, size=None, *color):
+        if color:
+            return self.turtle.dot(size, *color)
+        if size is not None:
+            return self.turtle.dot(size)
+        return self.turtle.dot()
 
     def begin_fill(self):
         return self.turtle.begin_fill()
