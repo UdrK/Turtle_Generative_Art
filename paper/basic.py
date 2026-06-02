@@ -3,10 +3,10 @@ from libs.tga_turtle import TGA_Turtle
 
 ## CANVAS SETUP
 tur = TGA_Turtle(is_svg=True, canvas_size=[1920, 1080])
+tur.color("white")
 tur.fillcolor("white")
 screen = tur.getscreen()
 screen.bgcolor("black")
-tur.color("white")
 
 triangle_spiral(tur, 300, 20, 119)
 tur.save_as("../Drawings/basic_paper.svg")

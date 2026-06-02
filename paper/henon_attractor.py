@@ -3,11 +3,10 @@ from art.strange_attractors.henon_attractor import loop
 
 screen_width = 1920
 screen_height = 1080
+## CANVAS SETUP
 tur = TGA_Turtle(is_svg=True, canvas_size=[screen_width, screen_height])
-tur.hideturtle()
-tur.penup()
-tur.speed(0)
 tur.color("white")
+tur.penup()
 screen = tur.getscreen()
 screen.bgcolor("black")
 
