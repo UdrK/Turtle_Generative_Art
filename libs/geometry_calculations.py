@@ -118,3 +118,11 @@ def ssa_triangle(a, b, A_deg):
             solutions.append((round(B2_deg, 2), round(C2_deg, 2), round(c2, 2)))
 
     return solutions
+
+def angle_between_intersecting_circles(r1, r2):
+    if r2 > 2*r1:
+        raise ValueError("No intersection possible: r2 > 2*r1")
+
+    x = 1 - (r2*r2) / (2 * r1*r1)
+    x = max(-1.0, min(1.0, x))
+    return math.degrees(2 * math.acos(x))

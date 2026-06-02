@@ -256,4 +256,22 @@ class TGA_Turtle:
             {"radius": radius, "extent": extent, "steps": steps},
         )
 
+    def stepped_circle_centered_at_turtle(self, radius, number_of_steps):
+        def stepped_circle(tur, radius, number_of_steps):
+            angle = 360 / number_of_steps
+            steps = []
+
+            self.setheading(0)
+            self.teleport(self.xcor(), self.ycor() - radius)
+
+            for i in range(number_of_steps):
+                self.circle(radius, extent=angle)
+                steps.append(self.position())
+            
+            return steps
+
+        return self.invariant_draw(
+            stepped_circle,
+            {"radius": radius, "number_of_steps": number_of_steps},
+        )
     # endregion
