@@ -90,6 +90,12 @@ class TGA_Turtle:
 
     # region drawing
 
+    def mark_spot(self, color="red"):
+        original_pen_color = self.pencolor()
+        self.pencolor(color)
+        self.dot()
+        self.pencolor(original_pen_color)
+
     def dot(self, size=None, *color):
         if color:
             return self.turtle.dot(size, *color)

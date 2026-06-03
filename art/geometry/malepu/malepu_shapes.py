@@ -148,5 +148,18 @@ def draw_star(tur, size):
         i += 1
 
 
+def draw_circle_with_crescent_circle_inside(tur, radius, arc_angle):
+    surplus_angle = arc_angle - 180
+    complementary_angle = 360 - arc_angle
+    tur.circle(radius, 180 + (surplus_angle / 2))
+    position = tur.position()
+    heading = tur.heading()
+    tur.circle(radius, complementary_angle)
+    tur.circle(radius, (surplus_angle / 2))
+    tur.teleport(position)
+    tur.setheading(-heading)
+    tur.circle(radius, -complementary_angle)
+    
+
 def draw_shape(tur):
     draw_star(tur, 100)
