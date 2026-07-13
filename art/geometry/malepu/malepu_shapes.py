@@ -1,7 +1,7 @@
 from libs.math_calculations import calculate_parabola, map_value_between_ranges
 from libs.geometry_shapes import draw_oval, draw_triangle
 from art.geometry.malepu.malepu_croissant import draw_croissant_complex, draw_evenly_croissant_complex
-
+import math
 
 def draw_overlapping_triangles(tur, triangle_side, draw_lower_side=False):
     angle = 360 / 3
@@ -61,16 +61,9 @@ def draw_crescent_circle(tur, radius, step_size=3, number_of_crescents=6):
 
 
 def draw_eye(tur, radius, arc_length):
-    def draw_with_fill(method, keyword_arguments):
-        tur = keyword_arguments["tur"]
-        tur.begin_fill()
-        method_result = method(**keyword_arguments)
-        tur.end_fill()
-        return method_result
-
     oval_lower_center = tur.pos()
-    [oval_center, oval_height] = tur.invariant_draw(
-        draw_oval, {"radius": radius, "arc_length": arc_length}
+    [oval_center, oval_height, positions] = tur.invariant_draw(
+        draw_oval, {"radius": radius, "arc_length": arc_length, "steps": 20}
     )
     original_heading = tur.heading()
     tur.setheading(original_heading)
@@ -81,17 +74,27 @@ def draw_eye(tur, radius, arc_length):
     distance_between_ovals = oval_height - small_oval_height
 
     tur.teleport([oval_lower_center[0], oval_lower_center[1] + distance_between_ovals])
-    actual_small_oval_height = draw_oval(tur, small_oval_radius, arc_length)
+    draw_oval(tur, small_oval_radius, arc_length)
 
     filled_circle_radius = radius / 7
     outlining_circle_radius = filled_circle_radius * 1.5
     tur.teleport(oval_center)
-    draw_with_fill(
-        tur.circle_centered_at_turtle,
-        {"tur": tur, "radius": filled_circle_radius},
-    )
+    tur.begin_fill()
+    tur.circle_centered_at_turtle(filled_circle_radius)
+    tur.end_fill()
     tur.circle_centered_at_turtle(outlining_circle_radius)
 
+    draw_eye_rays(tur, positions, oval_center, radius)
+
+
+def draw_eye_rays(tur, positions, center_position, rays_length):
+    i=0
+    for point_on_the_eye in positions:
+        tur.teleport(point_on_the_eye)
+        angle = tur.towards(center_position) - 180
+        tur.setheading(angle)
+        tur.forward_dashed(rays_length+(0.15*rays_length)*math.sin((0.5+i)*3.14))
+        i += 0.3
 
 def draw_segmented_non_triangle(tur, sides_length, starter_heading=5):
     def draw_arc(tur, sides_length):
