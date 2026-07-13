@@ -18,9 +18,26 @@ def draw_triangle(tur, side, forward_strategy=None):
         tur.left(120)
 
 
-def draw_oval(tur, radius, arc_length):
+def draw_oval(tur, radius, arc_length, steps=0):
+    positions = []
+
+    def add_to_positions(point):
+        delta = 0.2
+        for pos in positions:
+            if (pos[0] - delta < point[0] < pos[0] + delta):
+                if (pos[1] - delta < point[1] < pos[1] + delta):
+                    return
+        positions.append(point)
+
     def draw_half_oval_half_side(tur, radius, arc_length):
-        tur.circle(radius, arc_length)
+        if steps != 0:
+            angle = arc_length / steps
+            add_to_positions(tur.position())
+            for i in range(steps):
+                tur.circle(radius, angle)
+                add_to_positions(tur.position())
+        else:
+            tur.circle(radius, arc_length)
         side_apex = tur.pos()
         return side_apex
 
@@ -62,4 +79,4 @@ def draw_oval(tur, radius, arc_length):
     tur.setheading(tur.heading() + 180)
     draw_oval_side(tur, radius, arc_length, Direction.DOWN)
 
-    return [oval_center, oval_height]
+    return [oval_center, oval_height, positions]
