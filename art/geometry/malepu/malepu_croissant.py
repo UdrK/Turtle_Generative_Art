@@ -210,3 +210,53 @@ def draw_croissant_complex(tur):
     tur.teleport([0, -390])
     tur.setheading(original_heading)
     draw_radially_sectioned_croissant(tur, 390, 310, 52.5, 2, 115)
+
+
+def three_part_croissant(tur, heading, radius, angle, steps):
+    def stepped_generic_arc(tur, heading, radius, angle, steps):
+        small_angle = angle / steps
+
+        complementary_angle = 360 - angle
+        tur.setheading(complementary_angle/2)
+
+        positions = []
+        for _ in range(steps):
+            tur.circle(radius, small_angle)
+            positions.append(tur.pos())
+        
+        return positions[:-1]
+
+    def match_positions(tur, first_arc_positions, second_arc_positions):
+        for i in range(0, len(first_arc_positions)):
+            tur.teleport(first_arc_positions[i])
+            tur.goto(second_arc_positions[i])
+
+    origin = tur.position()
+    first_arc_positions = stepped_generic_arc(tur, heading, radius, angle, steps)
+
+    tur.teleport(origin[0], origin[1])
+    second_arc_positions = stepped_generic_arc(tur, heading, 1.5*radius, (0.465*angle), steps)
+
+    tur.teleport(origin[0], origin[1])
+    tur.generic_arc(1.105*radius, 230,)
+
+    match_positions(tur, first_arc_positions, second_arc_positions)
+
+
+def Bthree_part_croissant(tur, heading, radius, angle):
+    origin = tur.position()
+    first_arc_edges = tur.flat_arc(heading, radius, angle)
+
+    tur.teleport(origin[0], origin[1]+(radius/2.25))
+    first_arc_edge_heading = tur.towards(first_arc_edges[0])
+    second_arc_edge_heading = tur.towards(first_arc_edges[1])
+    new_angle = second_arc_edge_heading -first_arc_edge_heading
+    new_radius = distance_between_two_points(tur.position(), first_arc_edges[0])
+    tur.flat_arc(first_arc_edge_heading, new_radius, new_angle)
+
+    tur.teleport(origin[0], origin[1]+(radius/2)+(radius/5))
+    first_arc_edge_heading = tur.towards(first_arc_edges[0])
+    second_arc_edge_heading = tur.towards(first_arc_edges[1])
+    new_angle = second_arc_edge_heading -first_arc_edge_heading
+    new_radius = distance_between_two_points(tur.position(), first_arc_edges[0])
+    tur.flat_arc(first_arc_edge_heading, new_radius, new_angle)
