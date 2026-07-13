@@ -36,6 +36,23 @@ class TGA_Turtle:
     def circle(self, *args, **kwargs):
         return self.turtle.circle(*args, **kwargs)
 
+    def flat_arc(self, heading, radius, angle, debug=False):
+        arc_edges = []
+
+        self.setheading(heading)
+        self.forward_optional_draw(radius, debug)
+        arc_edges.append(self.position())
+        self.setheading(heading+90)
+        self.circle(radius, angle)
+        arc_edges.append(self.position())
+
+        return arc_edges
+
+    def generic_arc(self, radius, angle):
+        complementary_angle = 360 - angle
+        self.setheading(complementary_angle/2)
+        self.circle(radius, angle)
+
     # endregion
 
     # region state
@@ -280,4 +297,67 @@ class TGA_Turtle:
             stepped_circle,
             {"radius": radius, "number_of_steps": number_of_steps},
         )
+
+    def quadratic_bezier(self, start, control, end, steps=80, move_to_start=True):
+        x0, y0 = start
+        x1, y1 = control
+        x2, y2 = end
+
+        if steps <= 0:
+            steps = 1
+
+        points = []
+
+        if move_to_start:
+            self.teleport(x0, y0)
+        else:
+            self.goto(x0, y0)
+
+        for i in range(1, steps + 1):
+            t = i / steps
+            mt = 1 - t
+            x = (mt * mt * x0) + (2 * mt * t * x1) + (t * t * x2)
+            y = (mt * mt * y0) + (2 * mt * t * y1) + (t * t * y2)
+            self.goto(x, y)
+            points.append((x, y))
+
+        return points
+
+    def cubic_bezier(
+        self, start, control1, control2, end, steps=80, move_to_start=True
+    ):
+        x0, y0 = start
+        x1, y1 = control1
+        x2, y2 = control2
+        x3, y3 = end
+
+        if steps <= 0:
+            steps = 1
+
+        points = []
+
+        if move_to_start:
+            self.teleport(x0, y0)
+        else:
+            self.goto(x0, y0)
+
+        for i in range(1, steps + 1):
+            t = i / steps
+            mt = 1 - t
+            x = (
+                (mt * mt * mt * x0)
+                + (3 * mt * mt * t * x1)
+                + (3 * mt * t * t * x2)
+                + (t * t * t * x3)
+            )
+            y = (
+                (mt * mt * mt * y0)
+                + (3 * mt * mt * t * y1)
+                + (3 * mt * t * t * y2)
+                + (t * t * t * y3)
+            )
+            self.goto(x, y)
+            points.append((x, y))
+
+        return points
     # endregion
