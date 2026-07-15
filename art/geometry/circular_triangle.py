@@ -103,20 +103,6 @@ def shape(tur, radius):
     tur.invariant_draw(circles, params)
     tur.invariant_draw(draw_outer_inner_circle, outer_inner_circle_params)
 
-"""
-    tur.setheading(270)
-    tur.forward_without_drawing(radius*0.5)
-    tur.setheading(0)
-    tur.circle(radius*0.5, arc_degree_extension)
-
-    tur.teleport(center)
-    tur.setheading(30)
-    tur.forward_without_drawing(radius*0.5)
-    tur.mark_spot()
-    tur.setheading(120)
-    tur.circle(radius*0.5, arc_degree_extension)
-"""
-
 draw_shape_parameters = {"tur": None, 
                         "radius": 300}
 draw(shape, draw_shape_parameters, True)
