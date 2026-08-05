@@ -265,6 +265,31 @@ class TGA_Turtle:
             self.circle(radius)
         return circle_center
 
+    def polygon_centered_at_turtle(self, radius, edges=5, starting_angle=0, draw_radii=False):
+        def draw_polygon_centered_at_turtle(tur, radius, edges, starting_angle, draw_radii):
+            angle = 360 / edges
+            center = tur.pos()
+            vertices = []
+
+            tur.setheading(starting_angle)
+
+            for _ in range(edges):
+                tur.forward_optional_draw(radius, draw_radii)
+                vertices.append(tur.pos())
+                tur.teleport(center)
+                tur.left(angle)
+
+            for i in range(edges):
+                tur.teleport(vertices[i])
+                tur.goto(vertices[(i+1)%edges])
+
+            return vertices
+
+        return self.invariant_draw(
+            draw_polygon_centered_at_turtle,
+            {"radius": radius, "edges": edges, "starting_angle": starting_angle, "draw_radii": draw_radii},
+        )        
+
     def circle_centered_at_turtle(self, radius, extent=None, steps=None):
         def draw_circle_centered_at_turtle(tur, radius, extent=None, steps=None):
             tur.setheading(0)

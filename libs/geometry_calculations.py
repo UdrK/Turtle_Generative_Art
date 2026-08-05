@@ -126,3 +126,17 @@ def angle_between_intersecting_circles(r1, r2):
     x = 1 - (r2*r2) / (2 * r1*r1)
     x = max(-1.0, min(1.0, x))
     return math.degrees(2 * math.acos(x))
+
+def find_circle_center_passing_through_two_points(p1, p2, radius):
+    x3 = (p1[0] + p2[0])/2
+    y3 = (p1[1] + p2[1])/2
+
+    distance = distance_between_two_points(p1, p2)
+
+    delta_x = math.sqrt((radius**2 - (distance/2)**2)) * ((p1[1]-p2[1])/distance)
+    delta_y = math.sqrt((radius**2 - (distance/2)**2)) * ((p2[0]-p1[0])/distance)
+
+    center_1 = (x3+delta_x, y3+delta_y)
+    center_2 = (x3-delta_x, y3-delta_y)
+
+    return center_1, center_2
