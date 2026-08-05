@@ -10,7 +10,7 @@ tur.fillcolor("white")
 screen = tur.getscreen()
 screen.bgcolor("black")
 
-lissajous_curves.turtle_lissajous_curve(tur, lissajous_curves.TEST_RATIO)
+lissajous_curves.turtle_lissajous_curve_functions(tur, lissajous_curves.TEST_PARAMS)
 
 filename = "test3.svg"
 tur.save_as(f"../Drawings/lissajous_curves/{filename}")
